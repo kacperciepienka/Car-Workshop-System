@@ -1,0 +1,341 @@
+### Add car 1
+POST http://localhost:8080/api/cars/add
+Content-Type: application/json
+
+{
+  "brand": "BMW",
+  "carModel": "X3",
+  "regNumber": "WE32892",
+  "yearProduction": 2019
+}
+
+### Add car 2
+POST http://localhost:8080/api/cars/add
+Content-Type: application/json
+
+{
+  "brand": "AUDI",
+  "carModel": "A6",
+  "regNumber": "WR37892",
+  "yearProduction": 2014
+}
+
+### Add car 3
+POST http://localhost:8080/api/cars/add
+Content-Type: application/json
+
+{
+  "brand": "MERCEDES",
+  "carModel": "GLC",
+  "regNumber": "WK47389",
+  "yearProduction": 2024
+}
+
+### Add incorrect car
+POST http://localhost:8080/api/cars/add
+Content-Type: application/json
+
+{
+  "brand": "MERCEDES",
+  "carModel": "GLC",
+  "regNumber": "WK473897R283RY283423894702",
+  "yearProduction": 2024324
+}
+
+### Add mechanic 1
+POST http://localhost:8080/api/mechanics/add
+Content-Type: application/json
+
+{
+  "firstName": "Patrick",
+  "lastName": "Star",
+  "specialization": "GENERAL"
+}
+
+### Add mechanic 2
+POST http://localhost:8080/api/mechanics/add
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Picasso",
+  "specialization": "ENGINE"
+}
+
+### Add mechanic 3
+POST http://localhost:8080/api/mechanics/add
+Content-Type: application/json
+
+{
+  "firstName": "Alexander",
+  "lastName": "James",
+  "specialization": "SUSPENSION"
+}
+
+### Add car service 1
+POST http://localhost:8080/api/carServices/add
+Content-Type: application/json
+
+{
+  "name": "oil change",
+  "basePrice": 500.00,
+  "estimatedTime": 60
+}
+
+### Add car service 2
+POST http://localhost:8080/api/carServices/add
+Content-Type: application/json
+
+{
+  "name": "radiator replacement",
+  "basePrice": 1500.00,
+  "estimatedTime": 320
+}
+
+### Add car service 3
+POST http://localhost:8080/api/carServices/add
+Content-Type: application/json
+
+{
+  "name": "tire replacement",
+  "basePrice": 400.00,
+  "estimatedTime": 80
+}
+
+### Add incorrect car service
+POST http://localhost:8080/api/carServices/add
+Content-Type: application/json
+
+{
+  "name": "incorrect",
+  "basePrice": 0,
+  "estimatedTime": 0
+}
+
+### Add repair order 1
+POST http://localhost:8080/api/repairOrders/add/1/2/WK47389
+Content-Type: application/json
+
+{
+  "description": "Check oil filters"
+}
+
+### Add repair order 2
+POST http://localhost:8080/api/repairOrders/add/2/1/WE32892
+Content-Type: application/json
+
+{
+  "description": "Check radiator condition"
+}
+
+### Add repair order 3
+POST http://localhost:8080/api/repairOrders/add/3/3/WR37892
+Content-Type: application/json
+
+{
+  "description": "Winter tyres -> Summer tyres"
+}
+
+
+### Delete car 2
+DELETE http://localhost:8080/api/cars/2/delete
+
+### Delete mechanic 3
+DELETE http://localhost:8080/api/mechanics/3/delete
+
+### Delete car service 2
+DELETE http://localhost:8080/api/carServices/2/delete
+
+
+### Delete incorrect id car
+DELETE http://localhost:8080/api/cars/432/delete
+
+### Delete incorrect id mechanic
+DELETE http://localhost:8080/api/mechanics/543/delete
+
+### Delete incorrect id car service
+DELETE http://localhost:8080/api/carServices/4382/delete
+
+
+### Update registration number of car id 1
+PUT http://localhost:8080/api/cars/1/newReg?newRegNumber=WP78933
+
+### Update registration number of car id incorrect
+PUT http://localhost:8080/api/cars/43254/newReg?newRegNumber=WP78933
+
+### Update registration number of car id 1 (incorrect because we have the same alredy)
+PUT http://localhost:8080/api/cars/1/newReg?newRegNumber=WR37892
+
+### Update mechanic id 1 last name
+PUT http://localhost:8080/api/mechanics/1/newLastName?newLastName=Embidd
+
+### Update mechanic id incorrect last name
+PUT http://localhost:8080/api/mechanics/434/newLastName?newLastName=Embidd
+
+### Update mechanic id 1 specialization
+PUT http://localhost:8080/api/mechanics/1/newSpec?newSpec=BODY
+
+### Update mechanic id 1 incorrect
+PUT http://localhost:8080/api/mechanics/437/newSpec?newSpec=BODY
+
+### Update base price for a car service id 1
+PUT http://localhost:8080/api/carServices/1/newPrice?newPrice=600.00
+
+### Update base price for a car service id incorrect
+PUT http://localhost:8080/api/carServices/432/newPrice?newPrice=600.00
+
+### Update base price for a car service id 1 (incorrect price)
+PUT http://localhost:8080/api/carServices/1/newPrice?newPrice=0
+
+### Update estimated time for a car service id 1
+PUT http://localhost:8080/api/carServices/1/newTime?newTime=230
+
+### Update estimated time for a car service id incorrect
+PUT http://localhost:8080/api/carServices/347/newTime?newTime=230
+
+### Update estimated time for a car service id 1 (incorrect time)
+PUT http://localhost:8080/api/carServices/1/newTime?newTime=0
+
+### Update status of repair order id 1
+PUT http://localhost:8080/api/repairOrders/1/newStatus?newStatus=COMPLETED
+
+### Make it right after first one to test if you can't change when status is COMPLETED
+PUT http://localhost:8080/api/repairOrders/1/newStatus?newStatus=IN_PROGRESS
+
+### Update status of repair order id incorrect
+PUT http://localhost:8080/api/repairOrders/437/newStatus?newStatus=COMPLETED
+
+### --- CAR GETTERS ---
+
+### Get all cars
+GET http://localhost:8080/api/cars
+
+### Get car by registration number
+GET http://localhost:8080/api/cars/byRegNumber?regNumber=WE32892
+
+### Get cars by brand
+GET http://localhost:8080/api/cars/byBrand?brand=BMW
+
+### Get cars by model
+GET http://localhost:8080/api/cars/byModel?carModel=A6
+
+### Get cars by brand and model
+GET http://localhost:8080/api/cars/byBrandAndModel?brand=MERCEDES&carModel=GLC
+
+### Get cars manufactured after 2020
+GET http://localhost:8080/api/cars/byYearGreater?yearProductionIsGreaterThan=2020
+
+### Get cars manufactured before 2015
+GET http://localhost:8080/api/cars/byYearLess?yearProductionIsLessThan=2015
+
+### Get cars manufactured between 2010 and 2020
+GET http://localhost:8080/api/cars/byYearBetween?yearProductionAfter=2010&yearProductionBefore=2020
+
+### --- MECHANIC GETTERS ---
+
+### Get all mechanics
+GET http://localhost:8080/api/mechanics
+
+### Get mechanic by ID
+GET http://localhost:8080/api/mechanics/1
+
+### Get mechanics by first name
+GET http://localhost:8080/api/mechanics/byFirstName?firstName=Patrick
+
+### Get mechanics by last name
+GET http://localhost:8080/api/mechanics/byLastName?lastName=Star
+
+### Get mechanics by full name
+GET http://localhost:8080/api/mechanics/byFullName?firstName=John&lastName=Picasso
+
+### Get mechanics by specialization
+GET http://localhost:8080/api/mechanics/bySpec?specialization=ENGINE
+
+### --- CAR SERVICE GETTERS ---
+
+### Get all car services
+GET http://localhost:8080/api/carServices
+
+### Get car service by ID
+GET http://localhost:8080/api/carServices/1
+
+### Get car services by name
+GET http://localhost:8080/api/carServices/byName?name=oil%20change
+
+### Get services with price greater than 1000
+GET http://localhost:8080/api/carServices/byPriceGreater?basePriceIsGreaterThan=1000
+
+### Get services with price less than 600
+GET http://localhost:8080/api/carServices/byPriceLess?basePriceIsLessThan=600
+
+### Get services with price between 400 and 1000
+GET http://localhost:8080/api/carServices/byPriceBetween?basePriceAfter=400&basePriceBefore=1000
+
+### Get services taking longer than 100 minutes
+GET http://localhost:8080/api/carServices/byTimeGreater?estimatedTimeIsGreaterThan=100
+
+### Get services taking less than 90 minutes
+GET http://localhost:8080/api/carServices/byTimeLess?estimatedTimeIsLessThan=90
+
+### Get services taking between 30 and 120 minutes
+GET http://localhost:8080/api/carServices/byTimeBetween?estimatedTimeAfter=30&estimatedTimeBefore=120
+
+
+### --- REPAIR ORDER GETTERS ---
+
+### Get all repair orders
+GET http://localhost:8080/api/repairOrders
+
+### Find repair order by car registration number (PathVariable)
+GET http://localhost:8080/api/repairOrders/WK47389
+
+### Filter by car service name (RequestParam)
+GET http://localhost:8080/api/repairOrders/byName?name=oil%20change
+
+### Base price >= 1000
+GET http://localhost:8080/api/repairOrders/basePrice/greater?price=1000.0
+
+### Base price <= 600
+GET http://localhost:8080/api/repairOrders/basePrice/less?price=600.0
+
+### Base price between 400 and 1600
+GET http://localhost:8080/api/repairOrders/basePrice/between?priceAfter=400.0&priceBefore=1600.0
+
+### Estimated time >= 100 min
+GET http://localhost:8080/api/repairOrders/time/greater?time=100
+
+### Estimated time <= 90 min
+GET http://localhost:8080/api/repairOrders/time/less?time=90
+
+### Estimated time between 30 and 200 min
+GET http://localhost:8080/api/repairOrders/time/between?timeAfter=30&timeBefore=200
+
+### Total cost >= 600
+GET http://localhost:8080/api/repairOrders/totalCost/greater?totalCostIsGreaterThan=600.0
+
+### Total cost <= 1000
+GET http://localhost:8080/api/repairOrders/totalCost/less?totalCostIsLessThan=1000.0
+
+### Total cost between 500 and 2000
+GET http://localhost:8080/api/repairOrders/totalCost/between?totalCostAfter=500.0&totalCostBefore=2000.0
+
+### Orders for BMW brand
+GET http://localhost:8080/api/repairOrders/byCarBrand/BMW
+
+### Orders for X3 model
+GET http://localhost:8080/api/repairOrders/byCarModel/X3
+
+### Orders for specific Brand and Model
+GET http://localhost:8080/api/repairOrders/byCar/AUDI/A6
+
+### Orders with status OPEN
+GET http://localhost:8080/api/repairOrders/byStatus?status=OPEN
+
+### Orders handled by mechanic named Patrick
+GET http://localhost:8080/api/repairOrders/byMechanic/firstName?mechanicFirstName=Patrick
+
+### Orders handled by mechanic with last name Picasso
+GET http://localhost:8080/api/repairOrders/byMechanic/lastName?mechanicLastName=Picasso
+
+### Orders for ENGINE specialization
+GET http://localhost:8080/api/repairOrders/bySpecialization?mechanicSpecialization=ENGINE
